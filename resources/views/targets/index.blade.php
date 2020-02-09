@@ -5,19 +5,19 @@
     <div class="container">
 
         @component('components.breadcrumb')
-            @slot('title') Список целей @endslot
-            @slot('parent') Главная @endslot
-            @slot('active') Цели @endslot
+            @slot('title') List of targets @endslot
+            @slot('parent') Main @endslot
+            @slot('active') Targets @endslot
         @endcomponent
 
         <hr>
 
-        <a href="{{ route('targets.index') }}" class="btn btn-primary pull-right"><i class="fa fa-plus-square-o"></i> Создать категорию</a>
+        <a href="{{ route('targets.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus-square-o"></i>Create a target</a>
         <table class="table table-striped">
             <thead>
-            <th>Название цели</th>
-            <th>Описание</th>
-            <th class="text-right">Действие</th>
+            <th>Target title</th>
+            <th>Description</th>
+            <th class="text-right">Action</th>
             </thead>
             <tbody>
             @forelse ($targets as $target)
@@ -25,13 +25,12 @@
                     <td>{{ $target->title }}</td>
                     <td>{{ $target->description }}</td>
                     <td>
-{{--                        <a href="{{ route('targets.edit', ['id' => $target->target_id]) }}"><i class="fa fa-edit"></i></a>--}}
-                        <a href="#"><i class="fa fa-edit"></i></a>
+                        <a class="text-right" href="{{ route('targets.edit', ['target' => $target->target_id]) }}">Edit</a>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="text-center"><h2>Данные отсутствуют</h2></td>
+                    <td colspan="3" class="text-center"><h2>Data not found</h2></td>
                 </tr>
             @endforelse
             </tbody>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <br><br>
-        <h1>Create new target</h1>
+        <h1>Edit '{{ $target->title }}' target</h1>
         <br><br>
     </div>
     <div class="container col-md-6">

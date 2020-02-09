@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="col-sm-6">
-            <a href="{{ url('/targets') }}" class="list-group-item">
+            <a href="{{ url('targets') }}" class="list-group-item">
                 <h4 class="list-group-item-heading">Перейти к редактированию целей</h4>
             </a>
         </div>

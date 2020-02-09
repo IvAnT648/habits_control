@@ -26,7 +26,7 @@ class TargetController extends Controller
      */
     public function create()
     {
-        //
+        return view('targets.new');
     }
 
     /**
@@ -59,7 +59,7 @@ class TargetController extends Controller
      */
     public function edit(Target $target)
     {
-        //
+        return view('targets.edit', ['target' => $target]);
     }
 
     /**
