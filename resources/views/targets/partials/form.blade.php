@@ -29,5 +29,7 @@
 </div>
 <br>
 <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    <button style="margin: 5px" type="submit" class="btn btn-primary btn-lg pull-right">Save</button>
+    <a style="margin: 5px" class="btn btn-secondary btn-lg pull-right" href="{{ url('targets') }}">Back</a>
 </div>
+<br>

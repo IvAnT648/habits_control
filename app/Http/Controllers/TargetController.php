@@ -37,7 +37,12 @@ class TargetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if ($userId = auth()->user()->id) {
+            $data['user_id'] = $userId;
+        }
+        Target::create($data);
+        return redirect('targets');
     }
 
     /**

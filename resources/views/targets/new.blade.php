@@ -7,7 +7,7 @@
         <br><br>
     </div>
     <div class="container-fluid col-5">
-        <form class="form-horizontal" action="{{ route('targets.store') }}" method="post">
+        <form class="form-horizontal border" style="padding: 5%" action="{{ route('targets.store') }}" method="post">
             @csrf
             @include('targets.partials.form')
         </form>
