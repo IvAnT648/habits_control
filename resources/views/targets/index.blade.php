@@ -24,7 +24,7 @@
                     <td>{{ $target->title }}</td>
                     <td>{{ $target->description }}</td>
                     <td>
-                        <a class="text-right" href="{{ route('targets.edit', ['target' => $target->target_id]) }}">Edit</a>
+                        <a href="{{ route('targets.edit', ['target' => $target->target_id]) }}"><i class="fa fa-pencil"></i></a>
                     </td>
                 </tr>
             @empty
