@@ -11,15 +11,25 @@
             <thead>
             <th>Target title</th>
             <th>Description</th>
-            <th>Action</th>
+            <th class="text-right">Action</th>
             </thead>
             <tbody>
             @forelse ($targets as $target)
                 <tr>
                     <td>{{ $target->title }}</td>
                     <td>{{ $target->description }}</td>
-                    <td>
-                        <a href="{{ route('targets.edit', ['target' => $target->target_id]) }}"><i class="fa fa-pencil fa-2x"></i></a>
+                    <td class="text-right">
+                        <form onsubmit="return confirm('Delete the target?')"
+                              action="{{ route('targets.destroy', ['target' => $target]) }}"
+                              method="post">
+
+                            @method('delete')
+                            @csrf
+                            <a class="btn" href="{{ route('targets.edit', ['target' => $target]) }}">
+                                <i class="fa fa-pencil-square-o fa-2x"></i>
+                            </a>
+                            <button type="submit" class="btn"><i class="fa fa-trash-o fa-2x"></i></button>
+                        </form>
                     </td>
                 </tr>
             @empty

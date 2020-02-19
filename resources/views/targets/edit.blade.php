@@ -7,8 +7,9 @@
         <br><br>
     </div>
     <div class="container col-md-6">
-        <form class="form-horizontal" action="{{ route('targets.store') }}" method="post">
+        <form class="form-horizontal" action="{{ route('targets.update', $target) }}" method="post">
             @csrf
+            @method('put')
             @include('targets.partials.form')
         </form>
     </div>

@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class TargetController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -76,7 +86,10 @@ class TargetController extends Controller
      */
     public function update(Request $request, Target $target)
     {
-        //
+        $data = $request->all();
+        $target->update($data);
+//        return redirect('targets');
+        return redirect()->route('targets.index');
     }
 
     /**
@@ -87,6 +100,7 @@ class TargetController extends Controller
      */
     public function destroy(Target $target)
     {
-        //
+        $target->delete();
+        return redirect()->route('targets.index');
     }
 }
