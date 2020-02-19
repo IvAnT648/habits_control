@@ -86,9 +86,7 @@ class TargetController extends Controller
      */
     public function update(Request $request, Target $target)
     {
-        $data = $request->all();
-        $target->update($data);
-//        return redirect('targets');
+        $target->update($request->all());
         return redirect()->route('targets.index');
     }
 

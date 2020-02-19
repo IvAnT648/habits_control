@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Target extends Model
 {
     /**
-     * Primary key
-     *
-     * @var string
+     * Target types
      */
-    protected $primaryKey = 'target_id';
+    const
+        EVERY_DAY_TARGET_TYPE = 0,
+        COUNT_PER_MONTH_TARGET_TYPE = 1
+    ;
 
     /**
      * The attributes that are mass assignable.
