@@ -1,2 +1,2 @@
-<h1>The project allows to develop habits</h1>
+<h1>Творческий проект, МДКП</h1>
 
