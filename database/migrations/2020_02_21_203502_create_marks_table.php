@@ -18,15 +18,24 @@ class CreateMarksTable extends Migration
             $table->integer('value')
                 ->unsigned()
                 ->default(0);
-            $table->integer('target_id')
+            $table->unsignedInteger('target_id')
                 ->unsigned();
-            $table->integer('user_id')
+            $table->unsignedBigInteger('user_id')
                 ->unsigned();
-            $table->date('mark_date');
+            $table->date('day');
             $table->timestamps();
 
-            $table->foreign('target_id')->references('id')->on('targets');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('target_id')
+                ->references('id')
+                ->on('targets')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

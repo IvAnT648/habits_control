@@ -22,6 +22,7 @@ class AddCountPlanToTargetsTable extends Migration
                 ->unsigned();
             $table->float('percentage')
                 ->default(0);
+            $table->softDeletes();
         });
     }
 
@@ -33,9 +34,15 @@ class AddCountPlanToTargetsTable extends Migration
     public function down()
     {
         Schema::table('targets', function (Blueprint $table) {
-            $table->dropColumn('qty_planned');
-            $table->dropColumn('times_completed');
-            $table->dropColumn('percentage');
+            if (Schema::hasColumn('targets', 'qty_planned')) {
+                $table->dropColumn('qty_planned');
+            }
+            if (Schema::hasColumn('targets', 'times_completed')) {
+                $table->dropColumn('times_completed');
+            }
+            if (Schema::hasColumn('targets', 'percentage')) {
+                $table->dropColumn('percentage');
+            }
         });
     }
 }
