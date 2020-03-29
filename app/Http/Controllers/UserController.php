@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Target;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,6 +34,8 @@ class UserController extends Controller
      */
     public function activity()
     {
-        return view('activity');
+        return view('activity.index', [
+            'targets' => Target::all()
+        ]);
     }
 }
