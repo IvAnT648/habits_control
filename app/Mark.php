@@ -16,6 +16,13 @@ class Mark extends Model
      */
     protected $fillable = ['value', 'target_id', 'user_id', 'day'];
 
+    /**
+     * Set mark value for a target
+     *
+     * @param string $targetId Target ID
+     * @param string $value    Mark value
+     * @return void
+     */
     public static function setMarkValue($targetId, $value)
     {
         $currentDate = Carbon::now()->toDateString();
@@ -23,10 +30,6 @@ class Mark extends Model
             ->where('target_id', $targetId)
             ->where('day', $currentDate)
             ->first();
-//        $mark = DB::table('marks')
-//            ->where('target_id', $targetId)
-//            ->where('day', $currentDate)
-//            ->first();
 
         if ($mark) {
             $mark->update(['value' => $value]);
@@ -40,6 +43,12 @@ class Mark extends Model
         }
     }
 
+    /**
+     * Returns  today mark for a target
+     *
+     * @param Target $target Target
+     * @return mixed|null
+     */
     public static function getTodayMark(Target $target)
     {
         $currentDate = Carbon::now()->toDateString();

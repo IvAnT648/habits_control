@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Target;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TargetController extends Controller
 {

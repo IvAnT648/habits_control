@@ -2,11 +2,9 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Target extends Model
 {
@@ -14,14 +12,14 @@ class Target extends Model
      * Target types
      */
     const
-        EVERY_DAY_TARGET_TYPE              = 1,
-        ONCE_AT_WEEK_TARGET_TYPE           = 2,
-        TWICE_AT_WEEK_TARGET_TYPE          = 3,
-        THRICE_AT_WEEK_TARGET_TYPE         = 4,
-        FOUR_TIMES_AT_WEEK_TARGET_TYPE     = 5,
-        FIVE_TIMES_AT_WEEK_TARGET_TYPE     = 6,
-        SIX_TIMES_AT_WEEK_TARGET_TYPE      = 7,
-        CUSTOM_COUNT_PER_MONTH_TARGET_TYPE = 8
+        EVERY_DAY_TARGET_TYPE              = 0,
+        ONCE_AT_WEEK_TARGET_TYPE           = 1,
+        TWICE_AT_WEEK_TARGET_TYPE          = 2,
+        THRICE_AT_WEEK_TARGET_TYPE         = 3,
+        FOUR_TIMES_AT_WEEK_TARGET_TYPE     = 4,
+        FIVE_TIMES_AT_WEEK_TARGET_TYPE     = 5,
+        SIX_TIMES_AT_WEEK_TARGET_TYPE      = 6,
+        CUSTOM_COUNT_PER_MONTH_TARGET_TYPE = 7
     ;
 
     /**

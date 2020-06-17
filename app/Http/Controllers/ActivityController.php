@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mark;
 use App\Target;
-use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
@@ -28,20 +27,37 @@ class ActivityController extends Controller
         return view('activity.index');
     }
 
+    /**
+     * Returns list of current day targets
+     *
+     * @return array
+     */
     public function getTargets()
     {
         return Target::getTodayTargets()->toArray();
     }
 
+    /**
+     * Mark a target
+     *
+     * @param string $id Target ID
+     * @return array
+     */
     public function mark($id)
     {
         Mark::setMarkValue($id, 1);
-        return Target::getTodayTargets()->toArray();
+        return $this->getTargets();
     }
 
+    /**
+     * Unmark a target
+     *
+     * @param string $id Target ID
+     * @return array
+     */
     public function unmark($id)
     {
         Mark::setMarkValue($id, 0);
-        return Target::getTodayTargets()->toArray();
+        return $this->getTargets();
     }
 }
