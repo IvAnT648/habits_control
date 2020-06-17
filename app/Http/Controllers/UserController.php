@@ -26,16 +26,4 @@ class UserController extends Controller
     {
         return view('home');
     }
-
-    /**
-     * Activity table action
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function activity()
-    {
-        return view('activity.index', [
-            'targets' => Target::all()
-        ]);
-    }
 }

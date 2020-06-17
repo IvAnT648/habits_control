@@ -21,5 +21,5 @@ Auth::routes();
 |--------------------------------------------------------------------------
 */
 Route::get('/home', 'UserController@index')->name('home');
-Route::get('/activity', 'UserController@activity')->name('activity');
+Route::get('/activity', 'ActivityController@index')->name('activity');
 Route::resource('/targets', 'TargetController');

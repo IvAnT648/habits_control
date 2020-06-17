@@ -25,7 +25,7 @@
     <div id="app">
         @include('layouts.header')
 
-        <main id="page_cnt" class="py-6">
+        <main class="container-fluid">
             @yield('content')
         </main>
 

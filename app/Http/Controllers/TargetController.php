@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Target;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TargetController extends Controller
 {
@@ -14,7 +15,7 @@ class TargetController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -25,7 +26,7 @@ class TargetController extends Controller
     public function index()
     {
         return view('targets.index', [
-            'targets' => Target::paginate(10)
+            'targets' => Target::getUserTargets()
         ]);
     }
 
@@ -63,7 +64,7 @@ class TargetController extends Controller
      */
     public function show(Target $target)
     {
-        //
+        return redirect()->route('targets.index');
     }
 
     /**

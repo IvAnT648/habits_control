@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    <activity-component
+        :list="{{json_encode($targets)}}"
+        :csrf="{{ csrf_token() }}"
+        :create-target-url="{{ route('targets.create') }}">
+    </activity-component>
     <div class="container col-lg-6">
         <h1>Activity</h1>
-        <br/>
-        @component('components.breadcrumb', ['items' => [['route' => 'home', 'text' => 'Main'], ['text' => 'Activity']]]) @endcomponent
-        <hr>
     </div>
     <div class="container col-lg-6">
-        <h2 style="text-align: center">Goals for today</h2>
+        <h2>Goals for today</h2>
         <div class="today-activity justify-content-center">
             <table class="table-hover target-activity">
                 <thead>

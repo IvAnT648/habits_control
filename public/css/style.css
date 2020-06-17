@@ -1,9 +1,44 @@
 
-#page_cnt {
-    padding: 20px;
+body {
+    background: #f2f2f2;
+    font-family: "PT Mono";
+}
+
+.page_cnt {
+    padding: 30px 50px 50px;
+    background: #ffffff;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .header-link {
     font-size: large;
-    margin-left: 15px;
+    margin-left: 20%;
+}
+
+.page-name {
+    margin-bottom: 7%;
+}
+
+.target-row {
+    align-items: center;
+    border-radius: 15px;
+    background: #f2f2f2;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.target-row-header {
+    font-weight: bold;
+    padding: 5px;
+    background: #ffffff;
+}
+
+.target-row-add {
+    padding: 5px;
+}
+
+.target-row-buttons {
+    justify-content: center;
+    align-items: center;
 }
