@@ -2,8 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Target extends Model
 {
@@ -47,8 +50,28 @@ class Target extends Model
         ];
     }
 
+    /**
+     * Returns user targets collection
+     *
+     * @return Target[]|Collection
+     */
     static function getUserTargets()
     {
-        return Target::all()->where('user_id', Auth::user()->id);
+        $id = Auth::user()->id;
+        return Target::all()->where('user_id', $id);
+    }
+
+    /**
+     * Returns user targets collection
+     *
+     * @return Target[]|Collection
+     */
+    static function getTodayTargets()
+    {
+        $targets = Target::getUserTargets();
+        foreach ($targets as $target) {
+            $target->setAttribute('checked', (bool)Mark::getTodayMark($target));
+        }
+        return $targets;
     }
 }

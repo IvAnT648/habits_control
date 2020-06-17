@@ -1950,17 +1950,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['list', 'markUrl', 'createTargetUrl', 'csrf'],
+  props: ['createTargetUrl'],
+  data: function data() {
+    return {
+      list: [],
+      count: 0
+    };
+  },
   mounted: function mounted() {
+    this.loadList();
     console.log('Component mounted.');
+  },
+  methods: {
+    loadList: function loadList() {
+      var _this = this;
+
+      axios.get('/activity/load').then(function (response) {
+        _this.list = response.data;
+      });
+    },
+    mark: function mark(target) {
+      var _this2 = this;
+
+      var url;
+
+      if (target.checked) {
+        url = '/activity/unmark';
+      } else {
+        url = '/activity/mark';
+      }
+
+      url += '/' + target.id;
+      axios.get(url).then(function (response) {
+        _this2.list = response.data;
+      });
+    }
   }
 });
 
@@ -37548,7 +37573,7 @@ var render = function() {
     [
       _c("h2", { staticClass: "page-name" }, [_vm._v("Targets for today")]),
       _vm._v(" "),
-      _vm.list.length
+      _vm.list
         ? _c(
             "div",
             { staticClass: "col-sm" },
@@ -37575,21 +37600,51 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-sm align-content-center" }, [
-                    _c("div", { staticClass: "row target-row-buttons" }, [
-                      _c(
-                        "form",
-                        { attrs: { action: _vm.markUrl, method: "get" } },
-                        [
-                          _c("input", {
-                            attrs: { type: "hidden", name: "_token" },
-                            domProps: { value: _vm.csrf }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(1, true)
-                        ]
-                      )
-                    ])
+                  _c("div", { staticClass: "col-sm" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: item.checked,
+                          expression: "item.checked"
+                        }
+                      ],
+                      staticClass: "btn form-check-input",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(item.checked)
+                          ? _vm._i(item.checked, null) > -1
+                          : item.checked
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.mark(item)
+                        },
+                        change: function($event) {
+                          var $$a = item.checked,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(item, "checked", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  item,
+                                  "checked",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(item, "checked", $$c)
+                          }
+                        }
+                      }
+                    })
                   ])
                 ])
               })
@@ -37597,11 +37652,11 @@ var render = function() {
             2
           )
         : _c("div", { staticClass: "row justify-content-sm-center" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "w-100" }),
             _vm._v(" "),
-            _vm._m(3),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "w-100" }),
             _vm._v(" "),
@@ -37637,14 +37692,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-sm text-center" }, [
         _vm._v("\n                Actions\n            ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
-      _c("i", { staticClass: "fa fa-check-square action-icon" })
     ])
   },
   function() {

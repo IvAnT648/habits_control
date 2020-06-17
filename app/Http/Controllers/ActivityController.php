@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mark;
 use App\Target;
 use Illuminate\Http\Request;
 
@@ -24,14 +25,23 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return view('activity.index', [
-            'targets' => Target::getUserTargets()
-        ]);
+        return view('activity.index');
     }
 
-    public function mark(Request $request)
+    public function getTargets()
     {
-        $data = $request->all();
-        dd($data);
+        return Target::getTodayTargets()->toArray();
+    }
+
+    public function mark($id)
+    {
+        Mark::setMarkValue($id, 1);
+        return Target::getTodayTargets()->toArray();
+    }
+
+    public function unmark($id)
+    {
+        Mark::setMarkValue($id, 0);
+        return Target::getTodayTargets()->toArray();
     }
 }

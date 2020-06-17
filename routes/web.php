@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'UserController@index');
 
 Auth::routes();
@@ -20,6 +22,10 @@ Auth::routes();
 | User Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/home', 'UserController@index')->name('home');
-Route::get('/activity', 'ActivityController@index')->name('activity');
 Route::resource('/targets', 'TargetController');
+Route::get('/activity', 'ActivityController@index')->name('activity');
+Route::get('/activity/load', 'ActivityController@getTargets');
+Route::any('/activity/mark/{id}', 'ActivityController@mark');
+Route::any('/activity/unmark/{id}', 'ActivityController@unmark');

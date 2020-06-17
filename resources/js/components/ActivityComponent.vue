@@ -2,7 +2,7 @@
     <div class="container align-content-center col-sm-6 page_cnt">
         <h2 class="page-name">Targets for today</h2>
 
-        <div v-if="list.length" class="col-sm">
+        <div v-if="list" class="col-sm">
             <div class="row target-row target-row-header">
                 <div class="col-sm text-center">
                     Title
@@ -22,15 +22,8 @@
                 <div class="col-sm text-center">
                     {{ item.description }}
                 </div>
-                <div class="col-sm align-content-center">
-                    <div class="row target-row-buttons">
-                        <form :action="markUrl"
-                              method="get"
-                        >
-                            <input type="hidden" name="_token" :value="csrf">
-                            <button type="submit" class="btn"><i class="fa fa-check-square action-icon"></i></button>
-                        </form>
-                    </div>
+                <div class="col-sm">
+                    <input @click="mark(item)" class="btn form-check-input" type="checkbox" v-model="item.checked">
                 </div>
             </div>
         </div>
@@ -50,13 +43,38 @@
 <script>
     export default {
         props: [
-            'list',
-            'markUrl',
-            'createTargetUrl',
-            'csrf'
+            'createTargetUrl'
         ],
+        data: function () {
+            return {
+                list: [],
+                count: 0
+            }
+        },
         mounted() {
+            this.loadList()
             console.log('Component mounted.')
+        },
+        methods: {
+            loadList: function () {
+                axios.get('/activity/load').then((response) => {
+                    this.list = response.data;
+                })
+            },
+
+            mark: function (target) {
+                let url;
+                if (target.checked) {
+                    url = '/activity/unmark'
+                } else {
+                    url = '/activity/mark'
+                }
+                url += '/' + target.id;
+
+                axios.get(url).then((response) => {
+                    this.list = response.data;
+                })
+            },
         }
     }
 </script>
