@@ -1950,6 +1950,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['createTargetUrl'],
   data: function data() {
@@ -37600,52 +37602,60 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-sm" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: item.checked,
-                          expression: "item.checked"
-                        }
-                      ],
-                      staticClass: "btn form-check-input",
-                      attrs: { type: "checkbox" },
-                      domProps: {
-                        checked: Array.isArray(item.checked)
-                          ? _vm._i(item.checked, null) > -1
-                          : item.checked
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.mark(item)
-                        },
-                        change: function($event) {
-                          var $$a = item.checked,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(item, "checked", $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  item,
-                                  "checked",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
+                  _c(
+                    "div",
+                    { staticClass: "col-sm mark-check-box text-center" },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: item.checked,
+                              expression: "item.checked"
                             }
-                          } else {
-                            _vm.$set(item, "checked", $$c)
+                          ],
+                          staticClass: "btn form-check-input",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(item.checked)
+                              ? _vm._i(item.checked, null) > -1
+                              : item.checked
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.mark(item)
+                            },
+                            change: function($event) {
+                              var $$a = item.checked,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(item, "checked", $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      item,
+                                      "checked",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(item, "checked", $$c)
+                              }
+                            }
                           }
-                        }
-                      }
-                    })
-                  ])
+                        })
+                      ])
+                    ]
+                  )
                 ])
               })
             ],

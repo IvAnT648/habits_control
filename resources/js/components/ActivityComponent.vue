@@ -22,8 +22,10 @@
                 <div class="col-sm text-center">
                     {{ item.description }}
                 </div>
-                <div class="col-sm">
-                    <input @click="mark(item)" class="btn form-check-input" type="checkbox" v-model="item.checked">
+                <div class="col-sm mark-check-box text-center">
+                    <div class="form-group">
+                        <input @click="mark(item)" class="btn form-check-input" type="checkbox" v-model="item.checked">
+                    </div>
                 </div>
             </div>
         </div>
